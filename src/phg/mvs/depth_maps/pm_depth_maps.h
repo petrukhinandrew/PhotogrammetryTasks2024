@@ -31,7 +31,7 @@ namespace phg {
                 : ncameras(ncameras),
                   cameras_imgs(cameras_imgs), cameras_imgs_grey(cameras_imgs_grey),
                   cameras_labels(cameras_labels), cameras_PtoLocal(cameras_P),
-                  calibration(calibration)
+                  calibration(calibration), stats(std::vector<long long>(9, 0))
         {
             cameras_PtoWorld.resize(ncameras);
             cameras_RtoWorld.resize(ncameras);
@@ -90,7 +90,7 @@ namespace phg {
         std::vector<matrix3d>                cameras_RtoWorld; // матрица поворота из локальной системы координат i-ой камеры (смотрящей по оси +Z) в нлобальную систему координат мира
 
         const phg::Calibration              &calibration;
-        
+
         unsigned int                        ref_cam; // индекс референсной камеры (для которой мы строим карту глубины)
         float                               ref_depth_min, ref_depth_max; // минимальная и максимальная глубины фрустума (на самом деле минимальная и максимальная допустимая координата по оси Z в локальной системе референсной камеры)
 
@@ -98,10 +98,10 @@ namespace phg {
         cv::Mat                             depth_map;
         cv::Mat                             normal_map;
         cv::Mat                             cost_map;
-        
-        int                                 iter; // номер итерации
 
-        
+        int                                 iter; // номер итерации
+        std::vector<long long>                    stats; // 3d + n
+
     };
-    
+
 }

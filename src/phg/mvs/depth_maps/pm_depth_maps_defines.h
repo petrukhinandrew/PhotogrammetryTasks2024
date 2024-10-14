@@ -6,7 +6,7 @@
 #define GOOD_COST                   0.2f
 
 #define NITERATIONS                 5
-
+#define NITERATIONSF                5.f
 #define PROPAGATION_STEP            25
 
 #define COST_PATCH_RADIUS           5
